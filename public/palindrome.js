@@ -19,14 +19,14 @@ const stringConverter = (date)=>{
    let newDate = {}
 
     if (date.day < 10) {
-        newDate.day = "" + date.day;
+        newDate.day = "0" + date.day;
     }
     else {
         newDate.day = date.day.toString() ;
     }
 
     if (date.month < 10) {
-        newDate.month = "" + date.month;
+        newDate.month = "0" + date.month;
     }
     else {
         newDate.month = date.month.toString();
@@ -42,7 +42,7 @@ const stringConverter = (date)=>{
 
 const variantGenerator = (date) => {
 
-    console.log(date);
+
 
     let ddmmyyyy = date.day + date.month + date.year;
     let mmddyyyy = date.month + date.day + date.year;
@@ -67,10 +67,12 @@ const palindromeVariantCheck = (date) => {
     let palindrome = false;
     let variantResults = [];
     let testvar = [];
+    let testvartwo = [];
     
     for (let i = 0; i < palindropmevariants.length; i++) {
         if (palindropmevariants[i] === stringreverser(palindropmevariants[i])) {
             variantResults.push(true);
+            testvartwo.push(stringreverser(palindropmevariants[i]));
            
         } else {
             variantResults.push(false);
@@ -91,7 +93,7 @@ const palindromeVariantCheck = (date) => {
 
     }
     console.log(testvar);
-   
+    console.log(testvartwo);
     console.log(variantResults);
 
     return palindrome;
@@ -115,10 +117,16 @@ function leapyear(year){
 
 
 const getnextdate = (date) => {
+
+    console.log(
+        date
+    );
+
     let day=date.day+1;
     let month = date.month;
     let year = date.year
 
+    
     let months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     if(month === 2){ 
@@ -143,7 +151,7 @@ const getnextdate = (date) => {
       
       else {
          
-        if (day > daysInMonth[month - 1]) {
+        if (day > months[month - 1]) {
             
             day = 1; 
             month++;
@@ -157,7 +165,9 @@ const getnextdate = (date) => {
         month = 1;
         year++;
         
-      }
+    }
+    
+   
     
     return {
           
@@ -165,17 +175,21 @@ const getnextdate = (date) => {
         month: month,
         year: year
 
-      };
+    };
+    
+    
     
 }
 
 function getNextPalindromeDate(date){
-    var counter = 0;
-    var nextDate = getnextdate(date);
+    let counter = 0;
+    console.log(date);
+    let nextDate = getnextdate(date);
+    console.log(nextDate);
   
     while(1){
-      ctr++;
-      var isPalindrome = palindromeVariantCheck(nextDate);
+        counter++;
+      let isPalindrome = palindromeVariantCheck(stringConverter(nextDate));
       if(isPalindrome){
         break;
       }
@@ -190,7 +204,7 @@ const clickhandler=() => {
     
 
     let dateObj = {
-        day: date[2], month: date[1], year:date[0]
+        day: parseInt(date[2]), month:parseInt(date[1]), year:parseInt(date[0])
     }
 
     let newdate = stringConverter(dateObj);
@@ -201,7 +215,9 @@ const clickhandler=() => {
         result.innerHTML = "Yayyy, your birthdate is a palindrome";
     }
     else {
-        result.innerHTML = "nah bruh";
+        let  [counter, nextDate] = getNextPalindromeDate(dateObj);
+
+      result.innerHTML = `The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${counter} days! 😔`;
     }
 
 
