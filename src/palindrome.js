@@ -86,10 +86,6 @@ const isPalindrome = (date) => {
             console.log('yeah we got a palindrome :');
             break;
            
-        } else {
-            while (palindrome === false) {
-                isPalindrome(searchNextDate());
-            }
         }
 
     }
