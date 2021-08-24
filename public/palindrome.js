@@ -198,7 +198,7 @@ const clickhandler=() => {
     let flag = palindromeVariantCheck(newdate);
 
     if (flag) {
-        result.innerHTML = "Yayyy,your birthdate is a palindrome";
+        result.innerHTML = "Yayyy, your birthdate is a palindrome";
     }
     else {
         result.innerHTML = "nah bruh";
