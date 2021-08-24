@@ -181,7 +181,7 @@ const getnextdate = (date) => {
     
 }
 
-function getNextPalindromeDate(date){
+function nextpalindromedate(date){
     let counter = 0;
     console.log(date);
     let nextDate = getnextdate(date);
@@ -215,7 +215,7 @@ const clickhandler=() => {
         result.innerHTML = "Yayyy, your birthdate is a palindrome";
     }
     else {
-        let  [counter, nextDate] = getNextPalindromeDate(dateObj);
+        let  [counter, nextDate] = nextpalindromedate(dateObj);
 
       result.innerHTML = `The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${counter} days! 😔`;
     }
